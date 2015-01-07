@@ -1,0 +1,22 @@
+%div{:class => "col-md-2"}
+%div{:class => "col-md-8"}
+  %h1 Patient Search
+  = simple_form_for search_path, method: :get do |f|
+    %p
+      = f.label "Search for"
+      = text_field_tag :q, params[:q]
+      = submit_tag "Search", name: nil
+
+  %table{:class => "table table-striped"}
+    %tr
+      %th 
+        Patient ID
+      %th
+        Name
+    - @patients.each do |patient|
+      %tr
+        %td
+          = link_to patient.id, controller: "patients", action: "show", id: patient.id
+        %td
+          = patient.first_name + " " + patient.last_name
+%div{:class => "col-md-2"}
