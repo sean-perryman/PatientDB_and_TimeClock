@@ -1,0 +1,30 @@
+<div class="container well">
+  <div class="col-md-6">
+    <h1>Pay Periods</h1>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @payperiods.each do |payperiod| %>
+          <tr>
+            <td><%= payperiod.start.strftime("%m/%d/%y") %></td>
+            <td><%= payperiod.end.strftime("%m/%d/%y") %></td>
+            <td><%= link_to 'Edit', edit_payperiod_path(payperiod), :class => "btn btn-info" %></td>
+            <td><%= link_to 'Destroy', payperiod, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Pay Period', new_payperiod_path, :class => 'btn btn-default' %>
+  </div>
+</div>

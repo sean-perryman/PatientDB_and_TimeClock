@@ -1,0 +1,12 @@
+<%= simple_form_for(@payperiod) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :start %>
+    <%= f.input :end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Create Pay Period' %>
+  </div>
+<% end %>
