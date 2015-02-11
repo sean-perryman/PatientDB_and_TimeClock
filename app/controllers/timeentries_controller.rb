@@ -39,6 +39,9 @@ class TimeentriesController < ApplicationController
         # populate time_out with temp_time
         @timeentry.update( 'time_out' => timeentry_params[:temp_time] )
         @timeentry.save
+      else
+        # else create a new time entry with time_in set to temp_time
+        @timeentry = Timeentry.new( 'user_id' => timeentry_params[:user_id], 'time_in' => timeentry_params[:temp_time])
       end
     else
       # else create a new time entry with time_in set to temp_time
