@@ -69,7 +69,7 @@ class TimeentriesController < ApplicationController
   def update
     respond_to do |format|
       if @timeentry.update(timeentry_params)
-        format.html { redirect_to @timeentry, notice: 'Time entry was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Time entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @timeentry }
       else
         format.html { render :edit }

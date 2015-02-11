@@ -1,6 +1,39 @@
-<h1>Editing Timeentry</h1>
+<div class="container well">
+	<h1>Editing Time Entry</h1>
 
-<%= render 'form' %>
+	<%= simple_form_for(@timeentry, :html => { :class => 'form-inline' }) do |f| %>
+	  <%= f.error_notification %>
 
-<%= link_to 'Show', @timeentry %> |
-<%= link_to 'Back', timeentries_path %>
+	  <div class="form-inputs">
+			<div class="row">
+			  <div class="col-md-2">
+			  	<%= f.label 'Employee ID' %>
+			  </div>
+			  <div class="col-md-6">
+			  	<%= f.input_field :user_id, disabled: true %>
+			  </div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+			  	<%= f.label 'Time In' %>
+			  </div>
+			  <div class="col-md-6">	
+			  	<%= f.input_field :time_in %>
+			  </div>
+			</div>
+			<div class="row">
+			  <div class="col-md-2">	
+			  	<%= f.label 'Time Out' %>
+			  </div>
+			  <div class="col-md-6">	
+			  	<%= f.input_field :time_out %>
+			  </div>
+			</div>
+	  </div>
+
+	  <div class="form-actions">
+	    <%= f.button :submit, "Update" %>
+	  </div>
+	<% end %>
+
+</div>
