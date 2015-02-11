@@ -16,11 +16,13 @@ gem 'coffee-rails', '~> 4.1.0'
 #Bunch of stupid crap that will probably slow it down
 gem 'haml', '~> 4.0.6'
 gem 'bootstrap-sass', '~> 3.3.1'
+gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 gem 'will_paginate'
 gem 'simple_form'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'devise'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

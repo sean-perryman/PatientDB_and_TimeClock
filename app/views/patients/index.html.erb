@@ -1,30 +1,33 @@
-<div class="col-md-2"></div>
-<div class="container col-md-8">
-  <p id="notice"><%= notice %></p>
-  <h1 class="text-center">All Patients</h1>
-  <%= link_to "Search Patients", search_path, class: "btn btn-default" %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Patient ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @patients.each do |patient| %>
+<% if user_signed_in? %>
+  <div class="col-md-2"></div>
+  <div class="container col-md-8">
+    <h1 class="text-center">All Patients</h1>
+    <%= link_to "Search Patients", search_path, class: "btn btn-default" %>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><p><%= patient.patientID %></p></td>
-          <td><p><%= patient.first_name %></p></td>
-          <td><p><%= patient.last_name %></p></td>
-          <td><%= link_to 'Show', patient, class: "btn btn-success" %></td>
+          <th>Patient ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th colspan="1"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
 
-  <%= will_paginate @patients %>
-</div>
-<div class="col-md-2"></div>
+      <tbody>
+        <% @patients.each do |patient| %>
+          <tr>
+            <td><p><%= patient.patientID %></p></td>
+            <td><p><%= patient.first_name %></p></td>
+            <td><p><%= patient.last_name %></p></td>
+            <td><%= link_to 'Show', patient, class: "btn btn-success" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= will_paginate @patients %>
+  </div>
+  <div class="col-md-2"></div>
+<% else %>
+  <h4 class="text-center">Please sign in to continue.</h4>
+<% end %>
