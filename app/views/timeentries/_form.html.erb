@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
   	<% if user_signed_in? %>
-  		<%= f.input :user_id, :input_html => { :value => current_user.id } %>
+  		<%= f.input :user_id, :input_html => { :value => current_user.employee_id } %>
   	<% else %>
   		<%= f.input :user_id %>
   	<% end %>
@@ -11,6 +11,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Punch The Clock!" %>
   </div>
 <% end %>

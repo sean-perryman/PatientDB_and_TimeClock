@@ -28,12 +28,15 @@
         <li><a href="/timeentries/new">Time Clock</a></li>
         <% if user_signed_in? %>
           <li><a href="/timeentries">List Time Entries</a></li>
+          <% if current_user.admin %>
+            <li><a href="#">Pay Periods</a></li>
+          <% end %>
+          <li><a href="/patients">Patient Records</a></li>
         <% end %>
-        <li><a href="#">Patient Records</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-				  <li><%= link_to "Timeclock User ID: #{current_user.id}", edit_user_registration_path %></li>
+				  <li><%= link_to "Timeclock User ID: #{current_user.employee_id}", edit_user_registration_path %></li>
 				  <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 				<% else %>
 				  <%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-default navbar-btn'  %> |

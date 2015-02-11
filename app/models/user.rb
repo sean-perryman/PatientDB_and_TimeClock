@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :timeentries
 
+  validates :id, uniqueness: true
 end
