@@ -1,9 +1,8 @@
 <% if user_signed_in? %>
   <div class="container well">  
-    <h1>Listing Time Entries</h1>
+    <h1>Choose a Pay Period to Continue</h1>
 
     <table class="table table-striped">
-    <th>Pay Period</th>
     <% Payperiod.all.each do |payperiod| %>
       <tr><td><%= link_to "#{payperiod.start} - #{payperiod.end}", payperiod_path(payperiod.id), :class => 'pay_period_links' %></td></tr>
     <% end %>

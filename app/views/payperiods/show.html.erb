@@ -1,8 +1,9 @@
 <div class="container well">
 	<h4>Time entries for pay period <%= @payperiod.start %> to <%= @payperiod.end %></h1>
 
-	<table class="table table-striped">
-	  <thead>
+	
+	<% User.all.each do |user| %>
+	  <table class="table table-striped">
 	    <tr>
 	      <th>User ID</th>
 	      <th>User Name</th>
@@ -12,10 +13,8 @@
 	      <th>Elapsed Time</th>
 	      <th colspan="3"></th>
 	    </tr>
-	  </thead>
-
-	  <tbody>   
-	    <% Timeentry.all.where(:time_in => @payperiod.start..@payperiod.end).order("user_id").each do |timeentry| %>
+		  
+	    <% Timeentry.all.where(:time_in => @payperiod.start..@payperiod.end, :user_id => user.employee_id).each do |timeentry| %>
 	      <% if current_user.admin or current_user.employee_id == timeentry.user_id %>
 	        <tr>
 	          <td><%= timeentry.user_id %></td>
@@ -39,8 +38,10 @@
 	            <% end %>
 	          </td>
 	        </tr>
+
 	      <% end %>
 	    <% end %>
-	  </tbody>
-	</table>
+    	<p>Total time for pay period for <%= user.name %>: </p>
+  	</table>
+  <% end %>
 </div>
