@@ -3,49 +3,10 @@
     <h1>Listing Time Entries</h1>
 
     <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>User ID</th>
-          <th>User Name</th>
-          <th>Date</th>
-          <th>Time In</th>
-          <th>Time Out</th>
-          <th>Elapsed Time</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>   
-        <% @timeentries.order("user_id").each do |timeentry| %>
-          <% if current_user.admin or current_user.employee_id == timeentry.user_id %>
-            <tr>
-              <td><%= timeentry.user_id %></td>
-              <td><%= timeentry.user.name %></td>
-              <td><%= timeentry.time_in.strftime("%m/%d/%y") %></td>
-              <td><%= timeentry.time_in.strftime("%I:%M%p") %></td>
-              <td>
-                <% if timeentry.time_out.present? %>
-                  <%= timeentry.time_out.strftime("%I:%M%p") %>
-                <% end %>
-              </td>
-              <td>
-                <% if timeentry.time_out.present? %>
-                  <%= timeentry.elapsed_time(timeentry.time_in, timeentry.time_out) %> hours
-                <% end %>
-              </td>
-              <td>
-                <% if current_user.admin %>
-                  <%= link_to 'Edit', edit_timeentry_path(timeentry), :class => 'btn btn-info' %>
-                  <%= link_to 'Destroy', timeentry, method: :delete, data: { confirm: 'Are you sure? This action cannot be undone.' }, :class => 'btn btn-danger' %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-
-    <br>
+    <th>Pay Period</th>
+    <% Payperiod.all.each do |payperiod| %>
+      <tr><td><%= link_to "#{payperiod.start} - #{payperiod.end}", payperiod_path(payperiod.id), :class => 'pay_period_links' %></td></tr>
+    <% end %>
   </div>
 <% else %>
   <h4 class="text-center">Please log in.</h4>
