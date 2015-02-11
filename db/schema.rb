@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210213358) do
+ActiveRecord::Schema.define(version: 20150211005112) do
 
   create_table "patients", force: :cascade do |t|
     t.integer  "patientID",  limit: 4
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20150210213358) do
   add_index "patients", ["first_name"], name: "index_patients_on_first_name", using: :btree
   add_index "patients", ["last_name"], name: "index_patients_on_last_name", using: :btree
   add_index "patients", ["patientID"], name: "index_patients_on_patientID", unique: true, using: :btree
+
+  create_table "timeentries", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.datetime "time_in"
+    t.datetime "time_out"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.datetime "temp_time"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

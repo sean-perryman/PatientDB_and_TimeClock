@@ -1,0 +1,16 @@
+<%= simple_form_for(@timeentry) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<% if user_signed_in? %>
+  		<%= f.input :user_id, :input_html => { :value => current_user.id } %>
+  	<% else %>
+  		<%= f.input :user_id %>
+  	<% end %>
+    <%= f.input :temp_time, :as => :hidden, :input_html => { :value => Time.now } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

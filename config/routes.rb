@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :timeentries
+
   devise_for :users
   resources :patients
 
