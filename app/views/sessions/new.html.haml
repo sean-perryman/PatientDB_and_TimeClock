@@ -1,0 +1,9 @@
+%div{ :class => 'container well' }
+	%div{ :class => 'col-md-6' }
+		= simple_form_for :sessions, :url => log_in_path do |f|
+			= f.input :email, :label => "Email Address"
+			= f.input :password
+
+			= f.button :submit, 'Login'
+
+			= session[:user_id]
