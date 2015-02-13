@@ -13,6 +13,12 @@ class SessionsController < ApplicationController
 			flash[:alert] = "There was a problem logging you in."
 			redirect_to log_in_path
 		end
+
+		def edit
+		end
+
+		def show
+		end
 	end
 
 	def destroy

@@ -1,1 +1,7 @@
-%h1 HI!
+%div{ :class => 'container well' }
+	%div{ :class => 'col-md-6' }
+		= simple_form_for :users, :html => { :class => 'form-inline' } do |f|
+			= f.error_notification
+
+			%h4 Editing Information for 
+			= f
