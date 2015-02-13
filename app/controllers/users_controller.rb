@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 	def create
-		@user = User.new(user_params)
+		@user = User.new(user_params, :employee_id => rand(9999) )
 		
 		if @user.save
 			flash[:notice] = "Account Created Successfully!"
+			session[:user_id] = @user.employee_id
 			redirect_to "/"
 		else
 			flash[:alert] = "There was a problem creating your account. Please try again."
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		#@user = User.find(params[:id])
+		@user = current_user
 	end
 
 	# PATCH/PUT /users/1

@@ -1,14 +1,21 @@
 class User < ActiveRecord::Base
 	attr_accessor :password
+	
+	#relationships
+	has_many :timeentries
+
+	#validations
 	validates_confirmation_of :password
 	validates_presence_of :password
+	validates :employee_id, uniqueness: true,
+													presence: true
 
-	#validates :employee_id, uniqueness: true
+	validates_presence_of :name
+	validates_presence_of :email
 
+	#before actions
 	before_save :encrypt_password
 	before_save { self.email = email.downcase }
-
-	has_many :timeentries
 
 	def encrypt_password
 		self.password_salt = BCrypt::Engine.generate_salt
@@ -23,4 +30,17 @@ class User < ActiveRecord::Base
 	  	nil
 	  end
   end
+
+    def total_hours( start_date, end_date, user_id )
+			total = 0.0
+
+			@timeentries = Timeentry.all.where(:time_in => start_date..end_date, :user_id => user_id).each do |t|
+				if t.time_in.present? && t.time_out.present?
+					total += t.elapsed_time(t.time_in, t.time_out)
+				end
+			end
+
+			return total
+		end
+
 end
