@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 	#validates :employee_id, uniqueness: true
 
 	before_save :encrypt_password
+	before_save { self.email = email.downcase }
+
+	has_many :timeentries
 
 	def encrypt_password
 		self.password_salt = BCrypt::Engine.generate_salt

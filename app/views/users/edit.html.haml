@@ -1,7 +1,16 @@
 %div{ :class => 'container well' }
 	%div{ :class => 'col-md-6' }
-		= simple_form_for :users, :html => { :class => 'form-inline' } do |f|
+
+		= simple_form_for @user, html: { method: :put, :class => 'form-inline' } do |f|
 			= f.error_notification
 
-			%h4 Editing Information for 
-			= f
+			= f.input :name
+
+			= f.input :email
+
+			= f.input :employee_id
+
+			= f.input :password
+			= f.input :password_confirmation
+
+			= f.button :submit, "Update"

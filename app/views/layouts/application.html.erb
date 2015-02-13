@@ -36,7 +36,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-				  <li><%= link_to "Timeclock User ID: #{current_user.employee_id}", edit_user_path %></li>
+				  <li><%= link_to "Timeclock User ID: #{current_user.employee_id}", edit_user_path(current_user.id) %></li>
 				  <li><%= link_to "Logout", log_out_path, method: :delete %></li>
 				<% else %>
 				  <%= link_to "Sign up", new_user_path, :class => 'btn btn-default navbar-btn'  %> |

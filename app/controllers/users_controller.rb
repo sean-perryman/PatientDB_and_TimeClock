@@ -12,18 +12,21 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		@user = current_user
 	end
 
 	def show
-		@user = User.find(params[:id])
+		#@user = User.find(params[:id])
 	end
 
 	# PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+  	@user = User.find(params[:id])
+
     respond_to do |format|
     if @user.update(user_params)
-      format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      format.html { redirect_to new_timeentry_path, notice: 'User was successfully updated.' }
       format.json { render :show, status: :ok, location: @user }
     else
       format.html { render :edit }
@@ -34,6 +37,10 @@ class UsersController < ApplicationController
 end
 
 private
+	def set_user
+    @user = User.find(params[:id])
+  end
+
 	def user_params
 		params.require(:user).permit(:email, :name, :employee_id, :password, :password_confirmation)
 	end
