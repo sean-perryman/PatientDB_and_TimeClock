@@ -25,7 +25,7 @@ class TimeentriesController < ApplicationController
   # POST /timeentries
   # POST /timeentries.json
   def create
-    if User.where('employee_id' => timeentry_params[:user_id]).exists? 
+    if User.where('id' => timeentry_params[:user_id]).exists? 
       # Pull the latest timeentry row for that user id
       @timeentry = Timeentry.where( 'user_id' => timeentry_params[:user_id] ).last
       

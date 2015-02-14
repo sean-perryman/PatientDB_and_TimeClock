@@ -56,11 +56,11 @@ ActiveRecord::Schema.define(version: 20150211233905) do
     t.string   "name",          limit: 255
     t.string   "email",         limit: 255
     t.integer  "employee_id",   limit: 4
-    t.boolean  "admin",         limit: 1
+    t.boolean  "admin",         limit: 1,   default: false
     t.string   "password_hash", limit: 255
     t.string   "password_salt", limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
 end

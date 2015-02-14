@@ -12,8 +12,8 @@
 	      <th colspan="2"></th>
 	    </tr>
 		  
-	    <% Timeentry.all.where(:time_in => @payperiod.start..@payperiod.end, :user_id => user.employee_id).each do |timeentry| %>
-	      <% if current_user.admin or current_user.employee_id == timeentry.user_id %>
+	    <% Timeentry.all.where(:time_in => @payperiod.start..@payperiod.end, :user_id => user.id).each do |timeentry| %>
+	      <% if current_user.admin or current_user.id == timeentry.user_id %>
 	        <tr>
 	          <td><%= timeentry.user.name %></td>
 	          <td><%= timeentry.time_in.strftime("%m/%d/%y") %></td>
@@ -35,10 +35,10 @@
 	            <% end %>
 	          </td>
 	        </tr>
-	        <%= debug user.name %>
+	       
 	      <% end %>
 	    <% end %>
   	</table>
-  	<p class="panel panel-default">Total time for pay period for <%= user.name %>: <%= user.total_hours( @payperiod.start, @payperiod.end, user.employee_id ) %></p>
+  	<p class="panel panel-default">Total time for pay period for <%= user.name %>: <%= user.total_hours( @payperiod.start, @payperiod.end, user.id ) %></p>
   <% end %>
 </div>

@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 	def create
-		@user = User.new(user_params, :employee_id => rand(9999) )
+		@user = User.new(user_params)
 		
 		if @user.save
 			flash[:notice] = "Account Created Successfully!"
-			session[:user_id] = @user.employee_id
+			session[:user_id] = @user.id
 			redirect_to "/"
 		else
 			flash[:alert] = "There was a problem creating your account. Please try again."
@@ -43,6 +43,6 @@ private
   end
 
 	def user_params
-		params.require(:user).permit(:email, :name, :employee_id, :password, :password_confirmation)
+		params.require(:user).permit(:email, :name, :admin, :employee_id, :password, :password_confirmation)
 	end
 end

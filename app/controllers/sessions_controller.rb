@@ -14,11 +14,13 @@ class SessionsController < ApplicationController
 			redirect_to log_in_path
 		end
 
-		def edit
-		end
+		
+	end
 
-		def show
-		end
+	def edit
+	end
+
+	def show
 	end
 
 	def destroy

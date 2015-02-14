@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
   	<% if user_signed_in? %>
-  		<%= f.input :user_id, :input_html => { :value => current_user.employee_id } %>
+  		<%= f.input :user_id, :input_html => { :value => current_user.id } %>
   	<% else %>
   		<%= f.input :user_id %>
   	<% end %>
