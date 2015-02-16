@@ -5,13 +5,19 @@ class User < ActiveRecord::Base
 	has_many :timeentries
 
 	#validations
-	validates_presence_of :password
+	validates :name, presence: true, if: :name
+	validates :employee_id, numericality: true, 
+													:on => :update,
+													uniqueness: true
+	validates :email, presence: true,
+										uniqueness: true,
+										if: :email
+
+	validates_presence_of :password, if: :password, :on => :create
 	validates_confirmation_of :password
-	validates_presence_of :name
-	validates_presence_of :email
 
 	#before actions
-	before_save :encrypt_password
+	before_save :encrypt_password, :unless => Proc.new { |u| u.password.blank? }
 	before_save { self.email = email.downcase }
 
 	def encrypt_password
@@ -28,16 +34,16 @@ class User < ActiveRecord::Base
 	  end
   end
 
-    def total_hours( start_date, end_date, user_id )
-			total = 0.0
+  def total_hours( start_date, end_date, user_id )
+		total = 0.0
 
-			@timeentries = Timeentry.all.where(:time_in => start_date..end_date, :user_id => user_id).each do |t|
-				if t.time_in.present? && t.time_out.present?
-					total += t.elapsed_time(t.time_in, t.time_out)
-				end
+		@timeentries = Timeentry.all.where(:time_in => start_date..end_date, :user_id => user_id).each do |t|
+			if t.time_in.present? && t.time_out.present?
+				total += t.elapsed_time(t.time_in, t.time_out)
 			end
-
-			return total
 		end
+
+		return total
+	end
 
 end

@@ -28,10 +28,20 @@
         <% if user_signed_in? %>
           <li><a href="/timeentries/new">Time Clock</a></li>
           <li><a href="/timeentries">List Time Entries</a></li>
-          <% if current_user.admin %>
-            <li><a href="/payperiods">Pay Periods</a></li>
-          <% end %>
           <li><a href="/patients">Patient Records</a></li>
+          
+          <% if current_user.admin %>
+            <li role="presentation" class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                Admin Functions <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/payperiods">Pay Periods</a></li>
+                <li><a href="/users">Users</a></li>
+              </ul>
+            </li>
+          <% end %>
+        
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -39,8 +49,8 @@
 				  <li><%= link_to "Timeclock User ID: #{current_user.id}", edit_user_path(current_user.id) %></li>
 				  <li><%= link_to "Logout", log_out_path %></li>
 				<% else %>
-				  <%= link_to "Sign up", new_user_path, :class => 'btn btn-default navbar-btn'  %> |
-				  <%= link_to "Login", log_in_path, :class => 'btn btn-default navbar-btn'  %>
+				  <li><%= link_to "Sign up", new_user_path  %></li>
+				  <li><%= link_to "Login", log_in_path %></li>
 				<% end %>
       </ul>
     </div><!-- /.navbar-collapse -->

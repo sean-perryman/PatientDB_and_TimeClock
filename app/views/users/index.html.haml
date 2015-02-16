@@ -1,0 +1,34 @@
+- if current_user.admin
+	%div{ :class => 'container well' }
+		%h4 System Users
+
+		%table{ :class => 'table table-striped'}
+			%thead
+				%tr
+					%th
+						Name
+					%th
+						Employee ID
+					%th
+						Admin?
+					%th
+						%span{:colspan => '1'}
+			- @users.each do |user|				
+				%tbody
+					%tr
+						%td
+							= user.name
+						%td
+							- if user.employee_id.present?
+								= user.employee_id
+							- else
+								= user.id
+						%td
+							- if user.admin
+								Yes
+							- else
+								No
+						%td
+							= link_to "Edit", edit_user_path(user.id), :class => "btn btn-default btn-sm"
+- else
+	- redirect_to root_path
