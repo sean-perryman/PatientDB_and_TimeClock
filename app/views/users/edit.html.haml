@@ -9,4 +9,8 @@
 			= f.input :password
 			= f.input :password_confirmation
 			
+			- if current_user.admin
+				= f.input :admin, :label => "User can make changes to other users' accounts?"
+				= f.input :patient_record_access, :label => "User can access patient records?"
+
 			= f.button :submit, "Update"

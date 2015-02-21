@@ -28,8 +28,16 @@
         <% if user_signed_in? %>
           <li><a href="/timeentries/new">Time Clock</a></li>
           <li><a href="/timeentries">List Time Entries</a></li>
-          <li><a href="/patients">Patient Records</a></li>
-          
+          <% if current_user.patient_record_access %>
+            <li role="presentation" class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                Patient Record Functions <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/patients">All Patient Records</a></li>
+                <li><%= link_to "Search Patients", search_path %></li>
+              </ul>
+          <% end %>
           <% if current_user.admin %>
             <li role="presentation" class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">

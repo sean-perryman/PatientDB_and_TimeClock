@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
 	validates :name, presence: true, if: :name
 	validates :employee_id, numericality: true, 
 													:on => :update,
-													uniqueness: true
+													uniqueness: true,
+													:allow_nil => true
 	validates :email, presence: true,
 										uniqueness: true,
 										if: :email
@@ -45,5 +46,7 @@ class User < ActiveRecord::Base
 
 		return total
 	end
+
+
 
 end

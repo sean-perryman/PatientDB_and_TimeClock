@@ -1,5 +1,6 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :user_has_patient_record_access, only: [:index, :show]
 
   # GET /patients
   # GET /patients.json

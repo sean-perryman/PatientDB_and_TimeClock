@@ -26,8 +26,16 @@ class TimeentriesController < ApplicationController
   # POST /timeentries.json
   def create
     if User.where('id' => timeentry_params[:user_id]).exists? 
+      @user = User.find(timeentry_params[:user_id])
+    elsif User.where('employee_id' => timeentry_params[:user_id]).exists?
+      @user = User.find_by_employee_id(timeentry_params[:user_id])
+    else
+      @user = nil
+    end
+
+    if @user != nil
       # Pull the latest timeentry row for that user id
-      @timeentry = Timeentry.where( 'user_id' => timeentry_params[:user_id] ).last
+      @timeentry = Timeentry.where( 'user_id' => @user.id ).last
       
       # check if record from before exists
       if @timeentry.present?
@@ -43,11 +51,11 @@ class TimeentriesController < ApplicationController
           @timeentry.save
         else
           # else create a new time entry with time_in set to temp_time
-          @timeentry = Timeentry.new( 'user_id' => timeentry_params[:user_id], 'time_in' => timeentry_params[:temp_time])
+          @timeentry = Timeentry.new( 'user_id' => @user.id, 'time_in' => timeentry_params[:temp_time])
         end
       else
         # else create a new time entry with time_in set to temp_time
-        @timeentry = Timeentry.new( 'user_id' => timeentry_params[:user_id], 'time_in' => timeentry_params[:temp_time])
+        @timeentry = Timeentry.new( 'user_id' => @user.id, 'time_in' => timeentry_params[:temp_time])
       end
 
       respond_to do |format|

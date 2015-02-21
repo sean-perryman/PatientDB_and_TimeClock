@@ -3,9 +3,9 @@
 
   <div class="form-inputs">
   	<% if user_signed_in? %>
-  		<%= f.input :user_id, :input_html => { :value => current_user.id } %>
+  		<%= f.input :user_id, :label => "Employee ID", :input_html => { :value => current_user.id } %>
   	<% else %>
-  		<%= f.input :user_id %>
+  		<%= f.input :user_id, :label => "Employee ID" %>
   	<% end %>
     <%= f.input :temp_time, :as => :hidden, :input_html => { :value => Time.now } %>
   </div>
