@@ -1,9 +1,9 @@
 class SearchController < ApplicationController
 	def search
-	  if params[:q].nil?
-	    @patients = []
+	  if params[:q].present?
+	    @search = Patient.search params[:q], size: 250
 	  else
-	    @patients = Patient.search params[:q], size: 250
+	    @search = []
 	  end
 	end
 end

@@ -22,8 +22,6 @@ gem 'will_paginate'
 gem 'simple_form'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
-gem 'bonsai-elasticsearch-rails'
-# gem 'devise'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -48,6 +46,7 @@ gem 'mysql2'
 
 group :production do
  gem 'rails_12factor'
+ gem 'bonsai-elasticsearch-rails'
 end
 
 group :development, :test do

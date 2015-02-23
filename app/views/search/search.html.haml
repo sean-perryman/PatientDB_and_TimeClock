@@ -13,7 +13,7 @@
         Patient ID
       %th
         Name
-    - @patients.each do |patient|
+    - @search.each do |patient|
       %tr
         %td
           = link_to patient.id, controller: "patients", action: "show", id: patient.id
