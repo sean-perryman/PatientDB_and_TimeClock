@@ -19,6 +19,15 @@ class ApplicationController < ActionController::Base
 		@current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
 	end
 
+	def timeclock_id
+		if current_user.employee_id.nil?
+			current_user.id
+		else
+			current_user.employee_id
+		end
+	end
+
 	helper_method :current_user
 	helper_method :user_signed_in?
+	helper_method :timeclock_id
 end
