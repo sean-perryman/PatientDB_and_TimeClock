@@ -46,6 +46,10 @@ gem 'bcrypt', '~> 3.1.7', require: "bcrypt"
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+group :production do
+ gem 'rails_12factor'
+end
+
 group :development, :test do
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
