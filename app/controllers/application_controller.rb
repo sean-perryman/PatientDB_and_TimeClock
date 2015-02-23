@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   force_ssl
 
   # Prevent CSRF attacks by raising an exception.

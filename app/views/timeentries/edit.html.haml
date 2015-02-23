@@ -1,11 +1,12 @@
 %div{ :class => "container well" }
 	%h1 Editing Time Entry
 
-	= simple_form_for @timeentry do |f|
+	= simple_form_for @timeentry, html: { role: "form", class: "form form-inline" } do |f|
 		= f.error_notification
 
 		%div{ :class => 'col-md-6' }
 			= f.input :user_id, disabled: true
 			= f.input :time_in
 			= f.input :time_out
+
 			= f.button :submit, "Update"
