@@ -22,6 +22,7 @@ gem 'will_paginate'
 gem 'simple_form'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'bonsai-elasticsearch-rails'
 # gem 'devise'
 
 # Use jquery as the JavaScript library
